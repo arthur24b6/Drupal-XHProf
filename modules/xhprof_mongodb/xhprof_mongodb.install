@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the XHProf module.
+ */
+ 
+/**
+ * Implementation of hook_install().
+ */
+function xhprof_mongodb_install() {
+  module_load_include('module', 'mongodb');
+  $collection = mongodb_collection('xhprof');
+  $collection->ensureIndex(array("date" => -1, "date" => 1));
+  $collection->ensureIndex(array("path" => -1, "path" => 1));
+}
